@@ -117,10 +117,10 @@ const citiesDatabase = {
       }
     ],
     nearbySpots: [
-      { id: 'great-barrier-reef', title: '凱恩斯大堡礁潛水之旅', image: '/images/reef.png', category: 'nature', categoryName: '自然景觀' },
-      { id: 'gold-coast-beach', title: '黃金海岸狂歡熱浪', image: '/images/gold-coast.png', category: 'beach', categoryName: '海灘衝浪' },
-      { id: 'aus-food', title: '道地澳洲和牛與海鮮饗宴', image: '/images/food.png', category: 'food', categoryName: '在地美食' },
-      { id: 'aboriginal-culture', title: '庫蘭達庫帕卡原住民文化', image: '/images/culture.png', category: 'culture', categoryName: '人文體驗' }
+      { id: 'great-barrier-reef', title: '凱恩斯大堡礁潛水之旅', image: 'images/reef.png', category: 'nature', categoryName: '自然景觀' },
+      { id: 'gold-coast-beach', title: '黃金海岸狂歡熱浪', image: 'images/gold-coast.png', category: 'beach', categoryName: '海灘衝浪' },
+      { id: 'aus-food', title: '道地澳洲和牛與海鮮饗宴', image: 'images/food.png', category: 'food', categoryName: '在地美食' },
+      { id: 'aboriginal-culture', title: '庫蘭達庫帕卡原住民文化', image: 'images/culture.png', category: 'culture', categoryName: '人文體驗' }
     ]
   },
 
@@ -169,10 +169,10 @@ const citiesDatabase = {
       }
     ],
     nearbySpots: [
-      { id: 'sydney-opera', title: '雪梨歌劇院內部導覽', image: '/images/opera.jpg', category: 'culture', categoryName: '世界遺產' },
-      { id: 'blue-mountain', title: '藍山國家公園三姐妹岩', image: '/images/blue-mountain.jpg', category: 'nature', categoryName: '高山巨谷' },
-      { id: 'darling-harbour-food', title: '達令港星級景觀餐廳', image: '/images/darling-food.jpg', category: 'food', categoryName: '海港美食' },
-      { id: 'bondi-beach', title: '邦代海灘冰山泳池體驗', image: '/images/bondi.jpg', category: 'beach', categoryName: '網紅海灘' }
+      { id: 'sydney-opera', title: '雪梨歌劇院內部導覽', image: 'images/opera.jpg', category: 'culture', categoryName: '世界遺產' },
+      { id: 'blue-mountain', title: '藍山國家公園三姐妹岩', image: 'images/blue-mountain.jpg', category: 'nature', categoryName: '高山巨谷' },
+      { id: 'darling-harbour-food', title: '達令港星級景觀餐廳', image: 'images/darling-food.jpg', category: 'food', categoryName: '海港美食' },
+      { id: 'bondi-beach', title: '邦代海灘冰山泳池體驗', image: 'images/bondi.jpg', category: 'beach', categoryName: '網紅海灘' }
     ]
   }
 }
