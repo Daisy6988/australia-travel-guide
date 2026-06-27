@@ -1,6 +1,6 @@
 <template>
   <div class="city-list-container">
-    <div class="hero-header" style="background-image: url('/images/hero-bg.png'); background-size: cover; background-position: center;">
+    <div class="hero-header" style="background-image: url('images/hero-bg.png'); background-size: cover; background-position: center;">
       <h1>歡迎來到美麗的澳洲</h1>
       <p>探索大自然與現代城市的完美結合</p>
     </div>
@@ -37,13 +37,13 @@ const cities = ref([
     id: 'queensland',
     name: '昆士蘭州 (Queensland)',
     desc: '陽光之州！擁有著名的大堡礁、浪漫黃金海岸與萬年原住民熱帶雨林文化。',
-    image: '/images/reef.png' // 👈 修正為大堡礁海龜圖（或黃金海岸圖，只要 public 裡面有這個檔案即可）
+    image: 'images/reef.png' 
   },
   {
     id: 'sydney-region',
     name: '新南威爾斯州 (NSW)',
     desc: '探索繁華的雪梨歌劇院、歷史悠久的岩石區古街與壯麗的藍山國家公園。',
-    image: '/images/hero-bg.png' // 👈 修正為新南威爾斯州的代表圖（可改為您的雪梨大圖路徑）
+    image: 'images/hero-bg.png' // 👈 修正為新南威爾斯州的代表圖（可改為您的雪梨大圖路徑）
   }
 ])
 
