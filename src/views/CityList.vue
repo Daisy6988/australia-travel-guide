@@ -1,6 +1,6 @@
 <template>
   <div class="city-list-container">
-    <div class="hero-header" style="background-image: url('images/hero-bg.png'); background-size: cover; background-position: center;">
+    <div class="hero-header" :style="{ backgroundImage: `url(${imgUrl('hero-bg.png')})` }">
       <h1>歡迎來到美麗的澳洲</h1>
       <p>探索大自然與現代城市的完美結合</p>
     </div>
@@ -31,26 +31,27 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
-// ⚡ 修正圖片配對，確保與 CitySpots 的主題完美對應
+// ✅ 統一圖片路徑 helper，自動帶入 Vite 的 BASE_URL（/australia-travel-guide/）
+const imgUrl = (name) => `${import.meta.env.BASE_URL}images/${name}`
+
 const cities = ref([
   {
     id: 'queensland',
     name: '昆士蘭州 (Queensland)',
     desc: '陽光之州！擁有著名的大堡礁、浪漫黃金海岸與萬年原住民熱帶雨林文化。',
-    image: 'images/reef.png' 
+    image: imgUrl('reef.png')
   },
   {
     id: 'sydney-region',
     name: '新南威爾斯州 (NSW)',
     desc: '探索繁華的雪梨歌劇院、歷史悠久的岩石區古街與壯麗的藍山國家公園。',
-    image: 'images/hero-bg.png' // 👈 修正為新南威爾斯州的代表圖（可改為您的雪梨大圖路徑）
+    image: imgUrl('sydney.jpg')
   }
 ])
 
-// 點擊卡片時，將正確的 cityId 作為路由參數傳遞到下一頁
 const goToCity = (cityId) => {
   router.push({ 
-    name: 'city-spots', // 💡 請確保 router/index.js 裡的 name 也是寫 'city-spots'
+    name: 'city-spots',
     params: { cityId } 
   })
 }
@@ -61,7 +62,6 @@ const goToCity = (cityId) => {
   font-family: sans-serif; 
 }
 
-/* 頂部大圖防爆、防拉伸樣式 */
 .hero-header { 
   height: 350px; 
   background-size: cover; 
@@ -86,7 +86,6 @@ const goToCity = (cityId) => {
   opacity: 0.9;
 }
 
-/* 內容排版 */
 .main-content { 
   padding: 40px 20px; 
   max-width: 1200px; 
@@ -98,14 +97,12 @@ h2 {
   margin-bottom: 25px;
 }
 
-/* 城市列表網格 */
 .city-grid { 
   display: grid; 
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
   gap: 35px; 
 }
 
-/* 卡片與懸浮特效 */
 .city-card { 
   border-radius: 12px; 
   overflow: hidden; 

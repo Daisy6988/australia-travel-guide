@@ -23,12 +23,11 @@
     <!-- 站點展開圖卡 -->
     <transition name="slide-down">
       <div class="station-detail-card" v-if="activeStation">
-
-        <!-- ↓↓↓ 這裡是你要改的區塊 ↓↓↓ -->
         <div class="station-visual">
-           <span class="station-icon">{{ activeStation.icon }}</span>
+          <!-- ✅ 有 image 就顯示圖片，否則顯示 emoji icon -->
+          <img v-if="activeStation.image" :src="activeStation.image" :alt="activeStation.name" class="station-img" />
+          <span v-else class="station-icon">{{ activeStation.icon }}</span>
         </div>
-        <!-- ↑↑↑ 改到這裡結束 ↑↑↑ -->
 
         <div class="station-body">
           <p class="station-meta">{{ activeStation.id }} · {{ currentCityData.cityName }}觀光路線</p>
@@ -82,6 +81,9 @@ const props = defineProps(['cityId'])
 const currentCityData = ref(null)
 const activeStation = ref(null)
 
+// ✅ 統一圖片路徑 helper
+const imgUrl = (name) => `${import.meta.env.BASE_URL}images/${name}`
+
 // ── 核心資料庫 ────────────────────────────────────────────────
 const citiesDatabase = {
   'queensland': {
@@ -117,10 +119,10 @@ const citiesDatabase = {
       }
     ],
     nearbySpots: [
-      { id: 'great-barrier-reef', title: '凱恩斯大堡礁潛水之旅', image: 'images/reef.png', category: 'nature', categoryName: '自然景觀' },
-      { id: 'gold-coast-beach', title: '黃金海岸狂歡熱浪', image: 'images/gold-coast.png', category: 'beach', categoryName: '海灘衝浪' },
-      { id: 'aus-food', title: '道地澳洲和牛與海鮮饗宴', image: 'images/food.png', category: 'food', categoryName: '在地美食' },
-      { id: 'aboriginal-culture', title: '庫蘭達庫帕卡原住民文化', image: 'images/culture.png', category: 'culture', categoryName: '人文體驗' }
+      { id: 'great-barrier-reef', title: '凱恩斯大堡礁潛水之旅', image: imgUrl('reef.png'), category: 'nature', categoryName: '自然景觀' },
+      { id: 'gold-coast-beach', title: '黃金海岸狂歡熱浪', image: imgUrl('gold-coast.png'), category: 'beach', categoryName: '海灘衝浪' },
+      { id: 'aus-food', title: '道地澳洲和牛與海鮮饗宴', image: imgUrl('food.png'), category: 'food', categoryName: '在地美食' },
+      { id: 'aboriginal-culture', title: '庫蘭達庫帕卡原住民文化', image: imgUrl('culture.png'), category: 'culture', categoryName: '人文體驗' }
     ]
   },
 
@@ -147,7 +149,7 @@ const citiesDatabase = {
         id: 'S-3',
         name: '達令港休閒中心(Darling Harbour)',
         icon: '🌊',
-        image:'https://www.darlingharbour.com/getmedia/8b7be6b6-b8f6-4af8-9e39-361c8d161f55/Darling-Harbour-New-Precinct-Photography-2023-IMAX-Sydney-W-Hotel-17.jpg?width=1024',
+        image: 'https://www.darlingharbour.com/getmedia/8b7be6b6-b8f6-4af8-9e39-361c8d161f55/Darling-Harbour-New-Precinct-Photography-2023-IMAX-Sydney-W-Hotel-17.jpg?width=1024',
         tags: ['海港景觀', '親子樂園', '星級餐廳'],
         desc: '緊鄰市中心的多功能海港區，設有雪梨水族館、野生動物園、海事博物館，以及大量海景餐廳與酒吧。夜晚點燈後景色絕美，是結合親子活動與美食的最佳選擇。'
       },
@@ -155,7 +157,7 @@ const citiesDatabase = {
         id: 'S-4',
         name: '海德公園 / 雪梨塔(Hyde Park/Sydney Tower Eye)',
         icon: '🗼',
-        image:'https://www.cityofsydney.nsw.gov.au/-/jssmedia/corporate/images/places-and-spaces/parks/hyde-park/anzacmemorial2n5a2407.jpg?mw=1600',
+        image: 'https://www.cityofsydney.nsw.gov.au/-/jssmedia/corporate/images/places-and-spaces/parks/hyde-park/anzacmemorial2n5a2407.jpg?mw=1600',
         tags: ['城市綠肺', '360° 全景', '觀景餐廳'],
         desc: '海德公園是澳洲最古老的公共公園，榕樹林蔭大道令人心曠神怡。步行可達雪梨塔，登上 250 公尺高觀景台俯瞰全城與港灣，塔內亦有景觀 Buffet 餐廳。'
       },
@@ -163,21 +165,20 @@ const citiesDatabase = {
         id: 'S-5',
         name: '邦代海灘衝浪線(Bondi Beach)',
         icon: '🏊',
-        image:'https://assets.atdw-online.com.au/images/b52fd22efb00fc6eaf087d9f5c0443e6.jpeg?rect=0%2C0%2C2066%2C1550&w=1600&h=1200&&rot=360&q=eyJ0eXBlIjoibGlzdGluZyIsImxpc3RpbmdJZCI6IjU2YjIzZWFiMjY2MTQwNTk0NTY4MWViNyIsImRpc3RyaWJ1dG9ySWQiOiI1NmIxZWI5MzQ0ZmVjYTNkZjJlMzIwYzgiLCJhcGlrZXlJZCI6IjU2YjFlZTU5MGNmMjEzYWQyMGRjNTgxOSJ9?w=1172&h=762&fm=jpg',
+        image: 'https://assets.atdw-online.com.au/images/b52fd22efb00fc6eaf087d9f5c0443e6.jpeg?rect=0%2C0%2C2066%2C1550&w=1600&h=1200&&rot=360&q=eyJ0eXBlIjoibGlzdGluZyIsImxpc3RpbmdJZCI6IjU2YjIzZWFiMjY2MTQwNTk0NTY4MWViNyIsImRpc3RyaWJ1dG9ySWQiOiI1NmIxZWI5MzQ0ZmVjYTNkZjJlMzIwYzgiLCJhcGlrZXlJZCI6IjU2YjFlZTU5MGNmMjEzYWQyMGRjNTgxOSJ9?w=1172&h=762&fm=jpg',
         tags: ['網紅海灘', '海岸步道', '冰山泳池'],
         desc: '全球最知名的都市海灘之一，常駐衝浪救生員並有新手衝浪課程。沿岸 Bondi to Coogee 海岸步道風景絕美，終點為懸崖邊天然岩石泳池 Icebergs，IG 必拍打卡點。'
       }
     ],
     nearbySpots: [
-      { id: 'sydney-opera', title: '雪梨歌劇院內部導覽', image: 'images/opera.jpg', category: 'culture', categoryName: '世界遺產' },
-      { id: 'blue-mountain', title: '藍山國家公園三姐妹岩', image: 'images/blue-mountain.jpg', category: 'nature', categoryName: '高山巨谷' },
-      { id: 'darling-harbour-food', title: '達令港星級景觀餐廳', image: 'images/darling-food.jpg', category: 'food', categoryName: '海港美食' },
-      { id: 'bondi-beach', title: '邦代海灘冰山泳池體驗', image: 'images/bondi.jpg', category: 'beach', categoryName: '網紅海灘' }
+      { id: 'sydney-opera', title: '雪梨歌劇院內部導覽', image: imgUrl('opera.jpg'), category: 'culture', categoryName: '世界遺產' },
+      { id: 'blue-mountain', title: '藍山國家公園三姐妹岩', image: imgUrl('blue-mountain.jpg'), category: 'nature', categoryName: '高山巨谷' },
+      { id: 'darling-harbour-food', title: '達令港星級景觀餐廳', image: imgUrl('darling-food.jpg'), category: 'food', categoryName: '海港美食' },
+      { id: 'bondi-beach', title: '邦代海灘冰山泳池體驗', image: imgUrl('bondi.jpg'), category: 'beach', categoryName: '網紅海灘' }
     ]
   }
 }
 
-// ── 切換城市時更新資料並重置選中站點 ─────────────────────────
 const updateCityContent = (newCityId) => {
   const targetId = newCityId || 'queensland'
   currentCityData.value = citiesDatabase[targetId]
@@ -190,12 +191,10 @@ watch(
   { immediate: true }
 )
 
-// ── 站點點擊：同一站再點一次則收合 ───────────────────────────
 const selectStation = (station) => {
   activeStation.value = activeStation.value?.id === station.id ? null : station
 }
 
-// ── 深入探索：跳往站點詳細頁（依需求自行調整路由）───────────
 const goToStationDetail = (station) => {
   router.push({
     name: 'station-detail',
@@ -204,7 +203,6 @@ const goToStationDetail = (station) => {
   })
 }
 
-// ── 周邊景點卡片跳轉 ──────────────────────────────────────────
 const goToDetail = (spotId, category) => {
   router.push({
     name: 'spot-intro',
@@ -225,7 +223,6 @@ const goToDetail = (spotId, category) => {
   font-family: sans-serif;
 }
 
-/* ── 返回按鈕 ── */
 .back-btn {
   background: #007a99;
   color: white;
@@ -246,7 +243,6 @@ const goToDetail = (spotId, category) => {
   margin-bottom: 30px;
 }
 
-/* ── 觀光巴士路線 ── */
 .bus-route-map {
   display: flex;
   align-items: center;
@@ -312,7 +308,6 @@ const goToDetail = (spotId, category) => {
   z-index: -1;
 }
 
-/* ── 站點展開圖卡 ── */
 .station-detail-card {
   display: flex;
   align-items: flex-start;
@@ -327,14 +322,21 @@ const goToDetail = (spotId, category) => {
 }
 
 .station-visual {
-  width: 90px;
-  height: 90px;
+  width: 120px;
+  height: 100px;
   flex-shrink: 0;
-  background: #e0f4f7;
   border-radius: 12px;
+  overflow: hidden;
+  background: #e0f4f7;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.station-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .station-icon {
@@ -427,7 +429,6 @@ const goToDetail = (spotId, category) => {
   color: #555;
 }
 
-/* ── transition 動畫 ── */
 .slide-down-enter-active,
 .slide-down-leave-active {
   transition: all 0.22s ease;
@@ -439,7 +440,6 @@ const goToDetail = (spotId, category) => {
   transform: translateY(-8px);
 }
 
-/* ── 分隔線 ── */
 .divider {
   border: 0;
   height: 1px;
@@ -447,7 +447,6 @@ const goToDetail = (spotId, category) => {
   margin: 40px 0;
 }
 
-/* ── 周邊景點卡片 ── */
 .spots-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -498,25 +497,6 @@ const goToDetail = (spotId, category) => {
   margin-bottom: 6px;
 }
 
-.station-visual {
-  width: 120px;
-  height: 100px;
-  flex-shrink: 0;
-  border-radius: 12px;
-  overflow: hidden;
-  background: #e0f4f7;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.station-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* ── RWD ── */
 @media (max-width: 768px) {
   .bus-route-map {
     flex-direction: column;
